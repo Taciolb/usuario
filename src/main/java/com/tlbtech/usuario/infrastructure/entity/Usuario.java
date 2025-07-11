@@ -1,10 +1,7 @@
-package main.java.com.tlbtech.usuario.infrastructure.entity;
+package com.tlbtech.usuario.infrastructure.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "usuario")
+@Builder
 
 public class Usuario implements UserDetails {
 
@@ -31,10 +29,10 @@ public class Usuario implements UserDetails {
     private String senha;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    private List<Endereco> enderecos;
+    private List<com.tlbtech.usuario.infrastructure.entity.Endereco> enderecos;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    private List<Telefone> telefones;
+    private List<com.tlbtech.usuario.infrastructure.entity.Telefone> telefones;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -1,7 +1,7 @@
 package com.tlbtech.usuario.infrastructure.security;
 
 
-import main.java.com.tlbtech.usuario.infrastructure.entity.Usuario;
+import com.tlbtech.usuario.infrastructure.entity.Usuario;
 import com.tlbtech.usuario.infrastructure.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
