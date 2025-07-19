@@ -100,7 +100,6 @@ public class UsuarioService {
 
     }
 
-
     public TelefoneDTO atualizaTelefone(Long idTelefone, TelefoneDTO dto) {
 
         Telefone entity = telefoneRepository.findById(idTelefone).orElseThrow(() ->
