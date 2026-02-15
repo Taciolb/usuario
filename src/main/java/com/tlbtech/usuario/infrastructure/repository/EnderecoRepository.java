@@ -1,6 +1,7 @@
 package com.tlbtech.usuario.infrastructure.repository;
 
-import com.taciolb.aprendendospring.infrastructure.entity.Endereco;
+
+import com.tlbtech.usuario.infrastructure.entity.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
