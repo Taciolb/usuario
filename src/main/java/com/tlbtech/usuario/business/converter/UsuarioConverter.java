@@ -96,7 +96,6 @@ public class UsuarioConverter {
                 .enderecos(entity.getEnderecos())
                 .telefones(entity.getTelefones())
                 .build();
-
     }
 
     public Endereco updateEndereco(EnderecoDTO dto, Endereco entity){
