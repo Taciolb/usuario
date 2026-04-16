@@ -1,10 +1,11 @@
 package com.tlbtech.usuario.controller;
 
 import com.tlbtech.usuario.business.UsuarioService;
+import com.tlbtech.usuario.business.ViaCepService;
 import com.tlbtech.usuario.business.dto.EnderecoDTO;
 import com.tlbtech.usuario.business.dto.TelefoneDTO;
 import com.tlbtech.usuario.business.dto.UsuarioDTO;
-import com.tlbtech.usuario.infrastructure.entity.Usuario;
+import com.tlbtech.usuario.infrastructure.clients.ViaCepDTO;
 import com.tlbtech.usuario.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+    private final ViaCepService viaCepService;
 
     @PostMapping
     public ResponseEntity<UsuarioDTO> salvaUsuario(@RequestBody UsuarioDTO usuarioDTO){
@@ -48,8 +50,8 @@ public class UsuarioController {
     }
 
     @PutMapping
-    public ResponseEntity<UsuarioDTO> atualizDadoUsuario(@RequestBody UsuarioDTO dto,
-                                                         @RequestHeader("Authorization") String token) {
+    public ResponseEntity<UsuarioDTO> atualizaDadoUsuario(@RequestBody UsuarioDTO dto,
+                                                          @RequestHeader("Authorization") String token) {
         return ResponseEntity.ok(usuarioService.atualizaDadosUsuario(token, dto));
     }
 
@@ -75,7 +77,11 @@ public class UsuarioController {
     public ResponseEntity<TelefoneDTO> cadastraTelefone(@RequestBody TelefoneDTO dto,
                                                         @RequestHeader("Authorization") String token) {
         return ResponseEntity.ok(usuarioService.cadastraTelefone(token, dto));
+    }
 
+    @GetMapping("/endereco/{cep}")
+    public ResponseEntity<ViaCepDTO> buscarDadosCep(@PathVariable("cep") String cep){
+        return ResponseEntity.ok(viaCepService.buscarDadosEndereco(cep));
     }
 
 }
