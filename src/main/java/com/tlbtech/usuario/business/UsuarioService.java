@@ -118,9 +118,8 @@ public class UsuarioService {
                 new ResourceNotFoundException("Email não localizado " + email));
 
        Telefone telefone = usuarioConverter.paraTelefoneEntity(dto, usuario.getId());
-       Telefone telefoneEntity = telefoneRepository.save(telefone);
-       return usuarioConverter.paraTelefoneDTO(telefoneEntity);
-
+       return usuarioConverter.paraTelefoneDTO(
+               telefoneRepository.save(telefone)
+       );
     }
-
 }
