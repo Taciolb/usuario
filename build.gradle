@@ -1,12 +1,13 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.0.2'
-	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.springframework.boot' version '3.3.2'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id "org.sonarqube" version "4.4.1.3373"
 }
 
 group = 'com.tlbtech'
 version = '0.0.1-SNAPSHOT'
-description = 'Demo project for Spring Boot'
+
 
 java {
 	toolchain {
@@ -25,15 +26,16 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "2025.1.0")
+	set('springCloudVersion', "2023.0.1")
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 	implementation("io.jsonwebtoken:jjwt-api:0.13.0")
+	implementation 'org.eclipse.jgit:org.eclipse.jgit:6.9.0.202403050737-r'
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.13.0")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.13.0")
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.0'
@@ -46,9 +48,8 @@ dependencies {
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
 	implementation 'org.glassfish:jakarta.el:4.0.2'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
@@ -62,3 +63,14 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "usuario"
+		property "sonar.host.url", "http://localhost:9000"
+		property "sonar.login", "sqa_d3b0b52aae5e1bebc0d412d45b201acf6182dbf0"
+		property "sonar.gradle.skipCompile", "true"
+	}
+}
+
+
